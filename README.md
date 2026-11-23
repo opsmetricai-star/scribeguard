@@ -27,7 +27,7 @@ Never commit `.env.local`. Set the same variables in Vercel project settings to 
 
 ## What is implemented
 
-- Public site: home (12 sections), platform, agents, guardrails, models, knowledge, security, 6 solution pages, pricing, customers, resources, docs, about, contact, privacy/terms placeholders.
+- Public site: home, platform, agents, guardrails, models, knowledge, security, six solution pages, pricing, docs, about, privacy and terms. All marketing calls to action are Sign up or Log in.
 - Auth: sign-up, login, logout, password recovery and reset, protected `/app` routes (proxy + server-side check).
 - App: dashboard, assistant (chat), guardrail checks with saved policies, agent builder and runner, knowledge uploads (private Storage), analytics charts, billing, settings, notifications.
 - AI: server-side Gemini calls, zod-validated structured guardrail output, per-plan monthly credits spent atomically in Postgres, credits refunded when a model call fails.
@@ -41,9 +41,8 @@ A checkout redirect never upgrades an account. Plans change only through `POST /
 
 ## Known limitations
 
-- Tested against a live Supabase project and Gemini: login/logout, protected routes, RLS and tamper checks, storage isolation, guardrail check, agent run grounded in an uploaded document, assistant chat, plan and credit limits, webhook auth and activation, analytics. NOT tested: email sign-up confirmation and password-reset emails, the Selar payment flow itself, the contact form, and Vercel deployment.
+- Tested against a live Supabase project and Gemini: login/logout, protected routes, RLS and tamper checks, storage isolation, guardrail check, agent run grounded in an uploaded document, assistant chat, plan and credit limits, webhook auth and activation, analytics. NOT tested: email sign-up confirmation and password-reset emails, the Selar payment flow itself, and Vercel deployment. Review the privacy policy and terms with counsel before launch.
 - The reference site (writer.com) blocked automated access, so the design was built from general knowledge of its style, not a section-by-section audit. Colors were intentionally shifted.
 - Seats are not enforced (accounts are single-user). Agent count and monthly credits are enforced.
 - Knowledge: only `.txt`, `.md`, `.csv` are read by agents; PDF/DOCX are stored only.
-- Customer scenarios, stats and logos are illustrative placeholders, labeled as such. Replace them with real ones.
-- Resource articles, privacy and terms are placeholders.
+- There are no customer logos, testimonials or case studies; add real ones only when you have them.

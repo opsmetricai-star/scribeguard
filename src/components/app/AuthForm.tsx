@@ -27,7 +27,7 @@ export function AuthForm({ mode }: { mode: Mode }) {
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setError(null); setInfo(null);
-    if (!supabaseConfigured()) { setError("Supabase is not configured. Add the keys to .env.local and restart."); return; }
+    if (!supabaseConfigured()) { setError("Sign-in is temporarily unavailable. Please try again shortly."); return; }
     if ((mode === "signup" || mode === "reset") && password.length < 8) { setError("Use a password with at least 8 characters."); return; }
     setBusy(true);
     const sb = createClient();
@@ -45,11 +45,11 @@ export function AuthForm({ mode }: { mode: Mode }) {
         });
         if (error) throw error;
         if (data.session) { router.push("/app"); router.refresh(); }
-        else setInfo("Check your email to confirm your account, then log in.");
+        else setInfo("Check your work email for a confirmation link, then log in.");
       } else if (mode === "forgot") {
         const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: `${origin}/auth/callback?next=/reset-password` });
         if (error) throw error;
-        setInfo("If that email has an account, a reset link is on its way.");
+        setInfo("If that email belongs to an account, a reset link is on its way.");
       } else {
         const { error } = await sb.auth.updateUser({ password });
         if (error) throw error;

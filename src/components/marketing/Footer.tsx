@@ -10,11 +10,11 @@ export function Footer() {
           <div>
             <Logo light />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/60">
-              The governed AI platform for teams that need agents they can trust: models, guardrails and knowledge in one place.
+              The AI decision engine for business: models, guardrails and knowledge that analyze, decide and automate inside your rules.
             </p>
-            <Link href="/signup" className="btn btn-accent mt-6">Start free</Link>
+            <Link href="/signup" className="btn btn-accent mt-6">Sign up</Link>
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-4">
             {FOOTER.map((col) => (
               <div key={col.title}>
                 <h4 className="mb-4 font-display text-sm font-semibold text-white">{col.title}</h4>
@@ -31,7 +31,7 @@ export function Footer() {
         </div>
         <div className="mt-14 flex flex-col justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/50 sm:flex-row">
           <span>© {new Date().getFullYear()} ScribeGuard. All rights reserved.</span>
-          <span>Built for secure, governed AI.</span>
+          <span>Governed AI for business.</span>
         </div>
       </div>
     </footer>

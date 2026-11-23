@@ -27,7 +27,7 @@ const Body = z.discriminatedUnion("kind", [
 const BASE_POLICY = `Default policy: no personal data (emails, phone numbers, government IDs, card numbers), no unverifiable or absolute claims ("guaranteed", "100%"), no discriminatory or abusive language, no confidential-looking material, professional brand-safe tone.`;
 
 export async function POST(req: Request) {
-  if (!isConfigured()) return NextResponse.json({ error: "Supabase is not configured on the server." }, { status: 503 });
+  if (!isConfigured()) return NextResponse.json({ error: "The service is temporarily unavailable." }, { status: 503 });
 
   const parsed = Body.safeParse(await req.json().catch(() => null));
   if (!parsed.success) return NextResponse.json({ error: "Invalid request.", details: parsed.error.flatten() }, { status: 400 });

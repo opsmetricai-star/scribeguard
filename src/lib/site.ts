@@ -7,34 +7,26 @@ export const NAV: NavGroup[] = [
   {
     label: "Platform",
     items: [
-      { label: "Platform overview", href: "/platform", desc: "The full-stack system for governed enterprise AI" },
-      { label: "Agents", href: "/agents", desc: "Build and run agents that finish real work" },
-      { label: "Guardrails", href: "/guardrails", desc: "Policy checks on every input and output" },
-      { label: "Models", href: "/models", desc: "Purpose-built models tuned for business writing" },
-      { label: "Knowledge", href: "/knowledge", desc: "Ground answers in your own documents" },
-      { label: "Security", href: "/security", desc: "Controls built for regulated teams" },
+      { label: "Platform overview", href: "/platform", desc: "One AI engine for analysis, decisions and automation" },
+      { label: "Agents", href: "/agents", desc: "Autonomous workflows that finish the work" },
+      { label: "Guardrails", href: "/guardrails", desc: "Automated risk scoring and policy decisions" },
+      { label: "Models", href: "/models", desc: "The reasoning layer behind every action" },
+      { label: "Knowledge", href: "/knowledge", desc: "Decisions grounded in your own documents" },
+      { label: "Security", href: "/security", desc: "Isolation, audit and control by design" },
     ],
   },
   {
     label: "Solutions",
     items: [
-      { label: "Marketing", href: "/solutions/marketing", desc: "On-brand content at scale" },
-      { label: "Human resources", href: "/solutions/hr", desc: "Policy answers and onboarding" },
-      { label: "Customer support", href: "/solutions/support", desc: "Faster, safer replies" },
+      { label: "Marketing", href: "/solutions/marketing", desc: "Approved copy at campaign speed" },
+      { label: "Human resources", href: "/solutions/hr", desc: "Policy answers without the queue" },
+      { label: "Customer support", href: "/solutions/support", desc: "Faster resolutions, zero rogue promises" },
       { label: "Financial services", href: "/solutions/finance", desc: "Compliant client communication" },
-      { label: "Healthcare", href: "/solutions/healthcare", desc: "Careful documentation workflows" },
-      { label: "IT and operations", href: "/solutions/it", desc: "Runbooks and ticket triage" },
+      { label: "Healthcare", href: "/solutions/healthcare", desc: "Documentation with sensitive data controls" },
+      { label: "IT and operations", href: "/solutions/it", desc: "Triage and runbooks on autopilot" },
     ],
   },
-  { label: "Customers", href: "/customers" },
-  {
-    label: "Resources",
-    items: [
-      { label: "Resource center", href: "/resources", desc: "Guides, playbooks and reports" },
-      { label: "Documentation", href: "/docs", desc: "Get started with the app" },
-      { label: "Contact", href: "/contact", desc: "Talk to our team" },
-    ],
-  },
+  { label: "Docs", href: "/docs" },
   { label: "Pricing", href: "/pricing" },
 ];
 
@@ -46,113 +38,83 @@ export const FOOTER: { title: string; links: NavItem[] }[] = [
     { label: "Marketing", href: "/solutions/marketing" }, { label: "Human resources", href: "/solutions/hr" },
     { label: "Customer support", href: "/solutions/support" }, { label: "Financial services", href: "/solutions/finance" },
     { label: "Healthcare", href: "/solutions/healthcare" }, { label: "IT and operations", href: "/solutions/it" } ] },
-  { title: "Resources", links: [
-    { label: "Resource center", href: "/resources" }, { label: "Documentation", href: "/docs" },
-    { label: "Customers", href: "/customers" }, { label: "Pricing", href: "/pricing" } ] },
   { title: "Company", links: [
-    { label: "About", href: "/about" }, { label: "Contact", href: "/contact" },
+    { label: "About", href: "/about" }, { label: "Pricing", href: "/pricing" }, { label: "Docs", href: "/docs" },
     { label: "Privacy", href: "/privacy" }, { label: "Terms", href: "/terms" } ] },
-  { title: "Get started", links: [
-    { label: "Sign up", href: "/signup" }, { label: "Log in", href: "/login" }, { label: "Open the app", href: "/app" } ] },
+  { title: "Account", links: [
+    { label: "Sign up", href: "/signup" }, { label: "Log in", href: "/login" } ] },
 ];
 
 export interface Solution {
   slug: string; name: string; headline: string; intro: string;
-  pains: string[]; workflows: { title: string; body: string }[]; stat: { n: string; label: string }[];
+  pains: string[]; workflows: { title: string; body: string }[];
 }
 
 export const SOLUTIONS: Solution[] = [
   {
     slug: "marketing", name: "Marketing",
-    headline: "Publish faster without losing the brand voice",
-    intro: "Draft campaigns, landing pages and product copy with agents that know your style guide and check every claim before it goes live.",
-    pains: ["Style guides ignored under deadline pressure", "Legal review queues that stall launches", "Inconsistent tone across regions and agencies"],
+    headline: "Cut campaign cycle time without exposing the brand",
+    intro: "Agents draft campaign copy, score every claim against your rules and return an approved rewrite. Review queues shrink because the AI resolves the routine violations before a person sees them.",
+    pains: ["Style guides ignored under deadline pressure", "Legal review queues that stall launches", "Inconsistent claims across regions and agencies"],
     workflows: [
-      { title: "Campaign drafting", body: "Turn a brief into channel-ready variants, each scored against your voice rules." },
-      { title: "Claim checking", body: "Flag absolutes, unsupported statistics and restricted phrases before review." },
-      { title: "Localization review", body: "Keep translated copy consistent with approved terminology." },
+      { title: "Campaign drafting", body: "Turn a brief into channel-ready variants, each scored against your voice and claim rules." },
+      { title: "Claim screening", body: "Detect absolutes, unsupported statistics and restricted phrases, then rewrite them automatically." },
+      { title: "Approval routing", body: "Pass, warn or block each asset so reviewers spend time only on real exceptions." },
     ],
-    stat: [{ n: "3x", label: "faster first drafts" }, { n: "92%", label: "fewer review rounds" }, { n: "24/7", label: "policy coverage" }],
   },
   {
     slug: "hr", name: "Human resources",
-    headline: "Answer every people question with the right policy",
-    intro: "Give employees instant, accurate answers drawn from your handbook, and give HR a clear record of what was asked and said.",
-    pains: ["Repeated questions that drain the HR team", "Outdated handbook copies in circulation", "Sensitive topics handled inconsistently"],
+    headline: "Resolve employee policy questions at the source",
+    intro: "An agent grounded in your handbook answers policy questions instantly and logs every exchange. HR time moves from repeat questions to decisions that need judgment.",
+    pains: ["Repeat questions that consume HR capacity", "Outdated handbook copies in circulation", "Inconsistent handling of sensitive topics"],
     workflows: [
-      { title: "Policy assistant", body: "Answers grounded in uploaded handbooks, with sensitive topics routed to a person." },
-      { title: "Job description review", body: "Catch biased or non-compliant wording before a posting goes out." },
-      { title: "Onboarding agents", body: "Guide new hires through week-one checklists in plain language." },
+      { title: "Policy agent", body: "Answers drawn only from the documents you upload, with a full record of each interaction." },
+      { title: "Job posting screening", body: "Flag non-compliant or biased wording before a role goes live." },
+      { title: "Onboarding automation", body: "Walk new hires through role-specific checklists from your own material." },
     ],
-    stat: [{ n: "70%", label: "of questions self-served" }, { n: "5 min", label: "to publish a new policy" }, { n: "100%", label: "interactions logged" }],
   },
   {
     slug: "support", name: "Customer support",
-    headline: "Faster replies that stay accurate and kind",
-    intro: "Draft responses from your knowledge base, check tone and compliance, and hand agents a ready-to-send answer.",
-    pains: ["Long first-response times", "Agents improvising on refunds and promises", "Knowledge scattered across tools"],
+    headline: "Shorten time to resolution and stop unauthorized promises",
+    intro: "Agents draft replies from your knowledge library and block commitments your policy does not allow. Handle time falls while risk from off-script answers falls with it.",
+    pains: ["Slow first response times", "Agents improvising on refunds and commitments", "Answers scattered across tools"],
     workflows: [
-      { title: "Reply drafting", body: "Suggested replies built from your help center and past resolutions." },
-      { title: "Tone and promise checks", body: "Block commitments your policy does not allow." },
-      { title: "Escalation summaries", body: "Condense long threads into a clean handoff." },
+      { title: "Reply drafting", body: "Suggested responses built from your approved documentation." },
+      { title: "Commitment screening", body: "Block promises and guarantees that policy prohibits." },
+      { title: "Escalation briefs", body: "Condense long threads into a handoff that is ready to act on." },
     ],
-    stat: [{ n: "45%", label: "faster first response" }, { n: "0", label: "unapproved promises shipped" }, { n: "4.8", label: "average satisfaction" }],
   },
   {
     slug: "finance", name: "Financial services",
-    headline: "Client communication that meets the standard",
-    intro: "Keep advisory, marketing and servicing content inside regulatory lines with checks that run before anything is sent.",
-    pains: ["Strict disclosure requirements", "Manual compliance review of every message", "Audit requests that require proof of review"],
+    headline: "Move client communication through compliance at machine speed",
+    intro: "Every message is scored for disclosure gaps and prohibited claims before it leaves the building, and every verdict is stored. Compliance reviews exceptions instead of everything.",
+    pains: ["Strict disclosure requirements", "Manual review of every outbound message", "Audit requests that demand proof of review"],
     workflows: [
-      { title: "Disclosure checks", body: "Detect missing disclaimers and prohibited performance claims." },
-      { title: "Summaries of long filings", body: "Condense documents with references back to the source text." },
-      { title: "Audit trail", body: "Every check logged with the rule applied and the verdict." },
+      { title: "Disclosure screening", body: "Detect missing disclaimers and prohibited performance language." },
+      { title: "Document analysis", body: "Condense long filings into structured summaries your team can verify." },
+      { title: "Audit record", body: "Each check is logged with the rule applied, the verdict and the credits used." },
     ],
-    stat: [{ n: "60%", label: "less review time" }, { n: "Full", label: "audit history" }, { n: "Role", label: "based access" }],
   },
   {
     slug: "healthcare", name: "Healthcare",
-    headline: "Careful documentation, with privacy first",
-    intro: "Support administrative writing and patient communication with strong protection against exposing personal data.",
-    pains: ["Personal data slipping into drafts", "Time lost on repetitive documentation", "Plain-language requirements for patients"],
+    headline: "Accelerate documentation while controlling sensitive data",
+    intro: "Detect names, identifiers and contact details in free text before a draft is shared, and rewrite to a plain-language standard. Administrative output rises without raising exposure.",
+    pains: ["Sensitive data slipping into drafts", "Time lost on repetitive administrative writing", "Plain-language requirements for patient communication"],
     workflows: [
-      { title: "Personal data detection", body: "Spot names, identifiers and contact details in free text." },
-      { title: "Plain-language rewrite", body: "Rewrite clinical wording at a reading level patients can use." },
-      { title: "Admin letter drafting", body: "Draft appointment, billing and follow-up letters for staff review." },
+      { title: "Sensitive data detection", body: "Spot names, identifiers and contact details in free text." },
+      { title: "Plain-language rewrite", body: "Convert clinical wording into language recipients can act on." },
+      { title: "Administrative drafting", body: "Draft appointment, billing and follow-up letters for staff review." },
     ],
-    stat: [{ n: "High", label: "privacy sensitivity" }, { n: "2x", label: "faster admin writing" }, { n: "Human", label: "review retained" }],
   },
   {
     slug: "it", name: "IT and operations",
-    headline: "Turn runbooks and tickets into resolved work",
-    intro: "Give teams agents that read your documentation, triage requests and write clear updates.",
-    pains: ["Tickets that lack context", "Runbooks nobody reads", "Status updates written at the last minute"],
+    headline: "Triage faster and keep runbooks in constant use",
+    intro: "Agents classify incoming requests, answer from your documentation and draft stakeholder updates. Mean time to triage drops because the first pass is automated.",
+    pains: ["Tickets that arrive without context", "Runbooks nobody opens", "Status updates written under pressure"],
     workflows: [
-      { title: "Ticket triage", body: "Classify and summarize incoming requests with suggested next steps." },
-      { title: "Runbook assistant", body: "Answer questions from your uploaded documentation." },
-      { title: "Incident updates", body: "Draft stakeholder updates in a consistent format." },
+      { title: "Ticket triage", body: "Classify and summarize requests with a recommended next step." },
+      { title: "Runbook agent", body: "Answer operational questions from your uploaded documentation." },
+      { title: "Incident updates", body: "Draft stakeholder communication in a consistent format." },
     ],
-    stat: [{ n: "40%", label: "faster triage" }, { n: "1", label: "source of truth" }, { n: "Clear", label: "handoffs" }],
   },
-];
-
-export const CUSTOMER_STORIES = [
-  { company: "Northwind Capital", sector: "Financial services", quote: "Our compliance team reviews exceptions now, not every message.", metric: "60% less review time" },
-  { company: "Brightline Health", sector: "Healthcare", quote: "Privacy checks run before a draft ever leaves the building.", metric: "Zero exposed identifiers" },
-  { company: "Orbital Commerce", sector: "Retail", quote: "Support replies come out on-brand even on our busiest days.", metric: "45% faster responses" },
-  { company: "Kestrel Logistics", sector: "Operations", quote: "Runbooks finally get used because people can just ask them.", metric: "40% faster triage" },
-  { company: "Lumen Learning", sector: "Education", quote: "Course content stays consistent across forty authors.", metric: "3x faster publishing" },
-  { company: "Atlas Mutual", sector: "Insurance", quote: "Every customer letter is checked against current policy language.", metric: "100% audited" },
-];
-
-export const RESOURCES = [
-  { type: "Guide", title: "A practical framework for governing enterprise AI agents", read: "12 min" },
-  { type: "Playbook", title: "Writing guardrail policies your teams will actually follow", read: "9 min" },
-  { type: "Report", title: "State of AI adoption in regulated industries", read: "20 min" },
-  { type: "Guide", title: "Measuring the value of AI beyond hours saved", read: "8 min" },
-  { type: "Playbook", title: "Rolling out agents to your first 100 employees", read: "11 min" },
-  { type: "Checklist", title: "Security review checklist for AI vendors", read: "5 min" },
-  { type: "Guide", title: "Grounding answers in your documents, step by step", read: "10 min" },
-  { type: "Report", title: "What good AI governance looks like in practice", read: "15 min" },
-  { type: "Playbook", title: "Building a prompt and policy library", read: "7 min" },
 ];

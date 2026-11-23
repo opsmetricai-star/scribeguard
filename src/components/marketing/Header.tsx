@@ -45,13 +45,15 @@ export function Header() {
           )}
         </nav>
         <div className="hidden items-center gap-2 xl:flex">
-          <Link href="/login" className="rounded-full px-4 py-2 text-[15px] font-medium hover:bg-mist">Log in</Link>
-          <Link href="/contact" className="btn btn-light">Talk to sales</Link>
-          <Link href="/signup" className="btn btn-dark">Get started</Link>
+          <Link href="/login" className="btn btn-light">Log in</Link>
+          <Link href="/signup" className="btn btn-dark">Sign up</Link>
         </div>
-        <button className="rounded-full p-2 xl:hidden" aria-label="Toggle menu" onClick={() => setOpen(!open)}>
-          {open ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-2 xl:hidden">
+          <Link href="/signup" className="btn btn-dark hidden !px-4 !py-2 sm:inline-flex">Sign up</Link>
+          <button className="rounded-full p-2" aria-label="Toggle menu" onClick={() => setOpen(!open)}>
+            {open ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -73,7 +75,7 @@ export function Header() {
             </div>
           ))}
           <div className="mt-5 grid gap-3">
-            <Link href="/signup" onClick={() => setOpen(false)} className="btn btn-dark">Get started</Link>
+            <Link href="/signup" onClick={() => setOpen(false)} className="btn btn-dark">Sign up</Link>
             <Link href="/login" onClick={() => setOpen(false)} className="btn btn-light">Log in</Link>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { PLANS } from "@/lib/plans";
 
 export function Section({ children, tone = "white", id, className = "" }: { children: React.ReactNode; tone?: "white" | "mist" | "night" | "lilac"; id?: string; className?: string }) {
@@ -31,8 +31,7 @@ export function PageHero({ eyebrow, title, sub, children }: { eyebrow?: string; 
         <div className="mt-9 flex flex-wrap gap-3">
           {children ?? (
             <>
-              <Link href="/signup" className="btn btn-dark">Get started free <ArrowRight size={16} /></Link>
-              <Link href="/contact" className="btn btn-light">Talk to sales</Link>
+              <Link href="/signup" className="btn btn-dark">Sign up</Link>
             </>
           )}
         </div>
@@ -41,7 +40,7 @@ export function PageHero({ eyebrow, title, sub, children }: { eyebrow?: string; 
   );
 }
 
-export function CTA({ title = "Put governed AI to work this week", sub = "Create an account, upload a policy and run your first guardrail check in minutes." }: { title?: string; sub?: string }) {
+export function CTA({ title = "Put an AI decision engine behind every workflow", sub = "Create an account, load your policies and have agents analyzing, deciding and automating inside your rules today." }: { title?: string; sub?: string }) {
   return (
     <Section tone="night">
       <div className="relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#2a1a78] via-[#3a22a8] to-[#6c47ff] p-10 text-center sm:p-16">
@@ -49,8 +48,8 @@ export function CTA({ title = "Put governed AI to work this week", sub = "Create
         <h2 className="relative mx-auto max-w-2xl text-3xl font-semibold sm:text-5xl">{title}</h2>
         <p className="relative mx-auto mt-5 max-w-xl text-lg text-white/75">{sub}</p>
         <div className="relative mt-8 flex flex-wrap justify-center gap-3">
-          <Link href="/signup" className="btn bg-white text-ink">Start free</Link>
-          <Link href="/contact" className="btn btn-ghost-inv">Book a demo</Link>
+          <Link href="/signup" className="btn bg-white text-ink">Sign up</Link>
+          <Link href="/login" className="btn btn-ghost-inv">Log in</Link>
         </div>
       </div>
     </Section>
@@ -75,9 +74,9 @@ export function PlanCards() {
             ))}
           </ul>
           {p.checkoutUrl ? (
-            <Link href={`/signup?plan=${p.id}`} className={`btn mt-7 ${p.highlight ? "btn-accent" : "btn-dark"}`}>Choose {p.name}</Link>
+            <Link href={`/signup?plan=${p.id}`} className={`btn mt-7 ${p.highlight ? "btn-accent" : "btn-dark"}`}>Sign up</Link>
           ) : (
-            <Link href="/signup" className="btn btn-light mt-7">Start free</Link>
+            <Link href="/signup" className="btn btn-light mt-7">Sign up</Link>
           )}
         </div>
       ))}
@@ -92,7 +91,7 @@ export function Placeholder({ label }: { label: string }) {
         <div className="mb-4 flex gap-1.5"><i className="h-2.5 w-2.5 rounded-full bg-red-300" /><i className="h-2.5 w-2.5 rounded-full bg-amber-300" /><i className="h-2.5 w-2.5 rounded-full bg-green-300" /></div>
         <div className="mb-2 text-xs font-semibold uppercase tracking-wider text-accent">{label}</div>
         {[80, 95, 60, 88, 40].map((w, i) => (<div key={i} className="mb-2.5 h-2.5 rounded-full bg-ink/10" style={{ width: `${w}%` }} />))}
-        <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-mint px-3 py-1 text-xs font-semibold text-emerald-900"><Check size={13} /> Policy check passed</div>
+        <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-mint px-3 py-1 text-xs font-semibold text-emerald-900"><Check size={13} /> Verdict: pass</div>
       </div>
     </div>
   );

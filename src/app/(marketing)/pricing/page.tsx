@@ -5,23 +5,26 @@ import { CTA, Heading, PageHero, PlanCards, Section } from "@/components/marketi
 export const metadata: Metadata = { title: "Pricing" };
 
 const COMPARE = [
-  ["AI credits / month", "50", "500", "2,000", "8,000"],
+  ["AI credits per month", "50", "500", "2,000", "8,000"],
   ["Agents", "1", "3", "10", "50"],
-  ["Guardrail checks", "Yes", "Yes", "Yes", "Yes"],
+  ["Guardrail checks", "Included", "Included", "Included", "Included"],
+  ["Knowledge library", "Included", "Included", "Included", "Included"],
+  ["Analytics and run history", "Included", "Included", "Included", "Included"],
   ["Support", "Community", "Email", "Priority", "Dedicated manager"],
 ];
 
 const FAQ = [
-  ["How does payment work?", "Choose a plan, pay at the secure checkout, and your account is upgraded once the payment is confirmed. A redirect alone does not change your plan."],
-  ["What happens if I run out of credits?", "AI actions pause until credits refresh next month or you upgrade."],
-  ["Do you offer an enterprise plan?", "For larger deployments, contact us and we will scope it with you."],
+  ["How does payment work?", "Sign up, then complete checkout from the billing page using the same email as your account. Your plan activates once the payment is confirmed. Returning from checkout does not change your plan on its own."],
+  ["What happens when credits run out?", "AI actions pause until credits refresh next month or you upgrade. Nothing is charged beyond your plan."],
+  ["How are credits consumed?", "An assistant message costs 1 credit, a guardrail check costs 1 and an agent run costs 2. Failed model calls are returned."],
 ];
 
 export default function Pricing() {
   return (
     <>
-      <PageHero eyebrow="Pricing" title="Simple plans that grow with your team" sub="Every plan includes the full platform. Pick the amount of usage that fits.">
-        <Link href="/signup" className="btn btn-dark">Start free</Link>
+      <PageHero eyebrow="Pricing" title="Plans scaled to the volume of decisions you automate" sub="Every plan includes the full platform: models, guardrails, knowledge, agents and analytics. You choose how much AI capacity to run.">
+        <Link href="/signup" className="btn btn-dark">Sign up</Link>
+        <Link href="/login" className="btn btn-light">Log in</Link>
       </PageHero>
       <Section><PlanCards /></Section>
       <Section tone="mist">
@@ -42,10 +45,9 @@ export default function Pricing() {
             </tbody>
           </table>
         </div>
-        <p className="mt-4 text-sm text-ink/55">Credits: assistant message = 1, guardrail check = 1, agent run = 2. Credits refresh monthly.</p>
       </Section>
       <Section>
-        <Heading title="Pricing questions" />
+        <Heading title="Billing questions" />
         <div className="mt-8 max-w-3xl divide-y divide-line rounded-3xl border border-line">
           {FAQ.map(([q, a]) => (
             <details key={q} className="p-6">

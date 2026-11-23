@@ -5,19 +5,20 @@ import { PageHero, Section } from "@/components/marketing/sections";
 export const metadata: Metadata = { title: "Documentation" };
 
 const STEPS = [
-  ["1. Create an account", "Sign up with email and password, then confirm your email."],
-  ["2. Add knowledge", "Upload .txt, .md or .csv files in Knowledge so agents can reference them."],
-  ["3. Write a policy", "In Guardrails, save plain-language rules, for example: never mention pricing."],
-  ["4. Run a check", "Paste text to get a verdict, score, findings and a compliant rewrite."],
-  ["5. Build an agent", "Give it instructions, attach a policy and run it on real inputs."],
-  ["6. Watch usage", "Analytics and Billing show credits used against your plan."],
+  ["1. Create your workspace", "Sign up with a work email and confirm it from the message we send."],
+  ["2. Load your knowledge", "Upload .txt, .md or .csv files so agents can use them as evidence."],
+  ["3. Encode your policy", "In Guardrails, save plain-language rules such as: never state a guaranteed return."],
+  ["4. Run a decision", "Paste text to receive a verdict, a score, ranked findings and a compliant rewrite."],
+  ["5. Deploy an agent", "Give it instructions, attach a policy and run it on real inputs."],
+  ["6. Track the impact", "Analytics and Billing show volume, verdicts and credits against your plan."],
 ];
 
 export default function Docs() {
   return (
     <>
-      <PageHero eyebrow="Documentation" title="Get started in six steps" sub="A quick tour of the app, from first sign-up to your first agent run.">
-        <Link href="/signup" className="btn btn-dark">Create account</Link>
+      <PageHero eyebrow="Documentation" title="Deploy your first governed agent in six steps" sub="From a new workspace to a metered, audited agent run.">
+        <Link href="/signup" className="btn btn-dark">Sign up</Link>
+        <Link href="/login" className="btn btn-light">Log in</Link>
       </PageHero>
       <Section>
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">

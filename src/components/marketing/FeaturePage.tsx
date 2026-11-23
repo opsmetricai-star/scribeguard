@@ -7,15 +7,15 @@ export interface FeatureData {
   blocks: { title: string; body: string; points: string[] }[];
   grid: { title: string; body: string }[];
   faq: { q: string; a: string }[];
-  tryHref?: string; tryLabel?: string;
+
 }
 
 export function FeaturePage({ d }: { d: FeatureData }) {
   return (
     <>
       <PageHero eyebrow={d.eyebrow} title={d.title} sub={d.sub}>
-        <Link href="/signup" className="btn btn-dark">Get started free</Link>
-        {d.tryHref && <Link href={d.tryHref} className="btn btn-light">{d.tryLabel ?? "Try it in the app"}</Link>}
+        <Link href="/signup" className="btn btn-dark">Sign up</Link>
+        <Link href="/login" className="btn btn-light">Log in</Link>
       </PageHero>
 
       {d.blocks.map((b, i) => (

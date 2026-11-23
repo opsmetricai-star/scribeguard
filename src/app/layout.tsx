@@ -6,9 +6,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-poppins" });
 
 export const metadata: Metadata = {
-  title: { default: "ScribeGuard | Governed AI agents for the enterprise", template: "%s | ScribeGuard" },
-  description: "ScribeGuard combines purpose-built models, policy guardrails and knowledge grounding so teams can run AI agents with confidence.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  title: { default: "ScribeGuard | The AI decision engine for business", template: "%s | ScribeGuard" },
+  description: "ScribeGuard is the AI decision engine for business. It analyzes inputs, scores risk, enforces policy and automates the work, with every decision on the record.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000")),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

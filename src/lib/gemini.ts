@@ -22,7 +22,7 @@ interface GenOptions {
 /** Calls Gemini over REST from the server. The key never reaches the browser. */
 export async function generate(opts: GenOptions): Promise<string> {
   const key = process.env.GEMINI_API_KEY;
-  if (!key) throw new AIError("GEMINI_API_KEY is not configured on the server.", 503);
+  if (!key) throw new AIError("The AI engine is temporarily unavailable.", 503);
 
   const contents = [
     ...(opts.history ?? []).map((h) => ({ role: h.role, parts: [{ text: h.text }] })),
