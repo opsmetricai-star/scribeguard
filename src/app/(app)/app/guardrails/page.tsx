@@ -53,7 +53,7 @@ export default function Guardrails() {
   }
 
   return (
-    <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1.4fr_1fr]">
+    <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
       <div>
         <h1 className="text-3xl font-semibold">Guardrail check</h1>
         <p className="mt-1 text-sm text-ink/60">Paste content to review it against a policy. Uses 1 credit.</p>

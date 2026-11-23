@@ -15,6 +15,7 @@ export default function Agents() {
   const [policies, setPolicies] = useState<Policy[]>([]);
   const [form, setForm] = useState({ name: "", description: "", instructions: "", policy_id: "" });
   const [error, setError] = useState<string | null>(null);
+  const [createError, setCreateError] = useState<string | null>(null);
   const [active, setActive] = useState<string | null>(null);
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<string | null>(null);
@@ -31,9 +32,9 @@ export default function Agents() {
   useEffect(() => { load(); }, [load]);
 
   async function create(e: React.FormEvent) {
-    e.preventDefault(); setError(null);
+    e.preventDefault(); setCreateError(null);
     const res = await createAgent({ ...form, policy_id: form.policy_id || null });
-    if (res.error) { setError(res.error); return; }
+    if (res.error) { setCreateError(res.error); return; }
     setForm({ name: "", description: "", instructions: "", policy_id: "" }); load();
   }
 
@@ -55,7 +56,7 @@ export default function Agents() {
   const current = agents.find((a) => a.id === active);
 
   return (
-    <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[1fr_1.3fr]">
+    <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
       <div>
         <h1 className="text-3xl font-semibold">Agents</h1>
         <form onSubmit={create} className="card mt-6 space-y-3 p-5">
@@ -66,6 +67,7 @@ export default function Agents() {
             <option value="">Base policy only</option>
             {policies.map((p) => <option key={p.id} value={p.id}>{p.name}</option>)}
           </select>
+          {createError && <p role="alert" className="rounded-xl bg-red-50 p-3 text-sm text-red-700">{createError}</p>}
           <button className="btn btn-dark w-full">Create agent</button>
         </form>
         <div className="mt-4 space-y-3">

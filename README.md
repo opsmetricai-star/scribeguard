@@ -6,7 +6,7 @@ Governed AI platform: public marketing site plus a working app (Next.js 16, Reac
 
 1. `npm install`
 2. Copy `.env.example` to `.env.local` and fill in the values.
-3. In the Supabase SQL editor, run `supabase/migrations/0001_init.sql` (tables, RLS, signup trigger, credit function, storage bucket).
+3. In the Supabase SQL editor, run `supabase/migrations/0001_init.sql` then `0002_grants.sql` (tables, RLS, signup trigger, credit function, storage bucket, API role grants).
 4. In Supabase Auth settings, add `http://localhost:3000/auth/callback` (and your production URL) to the redirect allow-list.
 5. `npm run dev`
 
@@ -18,7 +18,8 @@ Governed AI platform: public marketing site plus a working app (Next.js 16, Reac
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | public | Supabase anon key |
 | `SUPABASE_SERVICE_ROLE_KEY` | server only | Credit accounting, webhook, contact form |
 | `GEMINI_API_KEY` | server only | Model access |
-| `GEMINI_MODEL` | server | Defaults to `gemini-3.8-flash` |
+| `GEMINI_MODEL` | server | Defaults to `gemini-3.5-flash` |
+| `GEMINI_FALLBACK_MODEL` | server | Used when the main model is overloaded; defaults to `gemini-3.1-flash-lite` |
 | `NEXT_PUBLIC_SITE_URL` | public | Auth redirects and metadata |
 | `SELAR_WEBHOOK_SECRET` | server only | Shared secret for `/api/webhooks/selar` |
 
@@ -40,7 +41,7 @@ A checkout redirect never upgrades an account. Plans change only through `POST /
 
 ## Known limitations
 
-- Supabase keys were not provided, so auth, database, storage and the full AI flow were not exercised end to end. Only the build, public pages and a Gemini key check were tested.
+- Tested against a live Supabase project and Gemini: login/logout, protected routes, RLS and tamper checks, storage isolation, guardrail check, agent run grounded in an uploaded document, assistant chat, plan and credit limits, webhook auth and activation, analytics. NOT tested: email sign-up confirmation and password-reset emails, the Selar payment flow itself, the contact form, and Vercel deployment.
 - The reference site (writer.com) blocked automated access, so the design was built from general knowledge of its style, not a section-by-section audit. Colors were intentionally shifted.
 - Seats are not enforced (accounts are single-user). Agent count and monthly credits are enforced.
 - Knowledge: only `.txt`, `.md`, `.csv` are read by agents; PDF/DOCX are stored only.

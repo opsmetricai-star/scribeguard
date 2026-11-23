@@ -97,7 +97,7 @@ export async function POST(req: Request) {
       payload = { output };
     }
 
-    await supabase.from("runs").insert({
+    await admin.from("runs").insert({
       user_id: auth.user.id,
       kind: body.kind,
       agent_id: agent?.id ?? null,

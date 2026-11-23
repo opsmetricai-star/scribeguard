@@ -1,6 +1,9 @@
 import { z } from "zod";
 
-const MODEL = process.env.GEMINI_MODEL || "gemini-3.8-flash";
+const MODELS = [
+  process.env.GEMINI_MODEL || "gemini-3.5-flash",
+  process.env.GEMINI_FALLBACK_MODEL || "gemini-3.1-flash-lite",
+];
 
 export class AIError extends Error {
   constructor(message: string, public status = 500) {
@@ -26,31 +29,44 @@ export async function generate(opts: GenOptions): Promise<string> {
     { role: "user", parts: [{ text: opts.prompt }] },
   ];
 
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json", "x-goog-api-key": key },
-      body: JSON.stringify({
-        contents,
-        ...(opts.system ? { systemInstruction: { parts: [{ text: opts.system }] } } : {}),
-        generationConfig: {
-          temperature: opts.temperature ?? 0.4,
-          ...(opts.json ? { responseMimeType: "application/json" } : {}),
-        },
-      }),
-      signal: AbortSignal.timeout(45_000),
+  const payload = JSON.stringify({
+    contents,
+    ...(opts.system ? { systemInstruction: { parts: [{ text: opts.system }] } } : {}),
+    generationConfig: {
+      temperature: opts.temperature ?? 0.4,
+      ...(opts.json ? { responseMimeType: "application/json" } : {}),
     },
-  );
+  });
 
-  if (!res.ok) {
-    const body = await res.text().catch(() => "");
-    throw new AIError(`Gemini request failed (${res.status}). ${body.slice(0, 200)}`, res.status === 429 ? 429 : 502);
+  let lastErr: AIError | null = null;
+  for (const model of MODELS) {
+    let res: Response;
+    try {
+      res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": key },
+        body: payload,
+        signal: AbortSignal.timeout(30_000),
+      });
+    } catch {
+      lastErr = new AIError("The model timed out. Please retry.", 504);
+      continue; // try the fallback model
+    }
+    if (!res.ok) {
+      const body = await res.text().catch(() => "");
+      lastErr = new AIError(`Model request failed (${res.status}). ${body.slice(0, 160)}`, res.status === 429 ? 429 : 502);
+      if ([404, 429, 500, 503].includes(res.status)) continue;
+      throw lastErr;
+    }
+    const data = await res.json();
+    const text = ((data?.candidates?.[0]?.content?.parts ?? []) as { text?: string; thought?: boolean }[])
+      .filter((p) => !p.thought)
+      .map((p) => p.text ?? "")
+      .join("");
+    if (!text) { lastErr = new AIError("The model returned an empty response.", 502); continue; }
+    return text;
   }
-  const data = await res.json();
-  const text = data?.candidates?.[0]?.content?.parts?.map((p: { text?: string }) => p.text ?? "").join("");
-  if (!text) throw new AIError("The model returned an empty response.", 502);
-  return text;
+  throw lastErr ?? new AIError("The model is unavailable.", 502);
 }
 
 export async function generateStructured<T extends z.ZodTypeAny>(

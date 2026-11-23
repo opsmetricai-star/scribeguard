@@ -19,7 +19,7 @@ export function AnalyticsCharts({ daily, kinds, verdicts }: Props) {
               <XAxis dataKey="day" tick={{ fontSize: 11 }} interval={4} />
               <YAxis allowDecimals={false} tick={{ fontSize: 11 }} width={30} />
               <Tooltip />
-              <Line type="monotone" dataKey="credits" stroke="#6c47ff" strokeWidth={2.5} dot={false} />
+              <Line isAnimationActive={false} type="monotone" dataKey="credits" stroke="#6c47ff" strokeWidth={2.5} dot={false} />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -30,7 +30,7 @@ export function AnalyticsCharts({ daily, kinds, verdicts }: Props) {
           <ResponsiveContainer>
             <BarChart data={kinds}>
               <XAxis dataKey="name" tick={{ fontSize: 12 }} /><YAxis allowDecimals={false} width={30} tick={{ fontSize: 11 }} /><Tooltip />
-              <Bar dataKey="runs" fill="#6c47ff" radius={[8, 8, 0, 0]} />
+              <Bar isAnimationActive={false} dataKey="runs" fill="#6c47ff" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -41,7 +41,7 @@ export function AnalyticsCharts({ daily, kinds, verdicts }: Props) {
           <ResponsiveContainer>
             <BarChart data={verdicts}>
               <XAxis dataKey="name" tick={{ fontSize: 12 }} /><YAxis allowDecimals={false} width={30} tick={{ fontSize: 11 }} /><Tooltip />
-              <Bar dataKey="count" fill="#2f9e6b" radius={[8, 8, 0, 0]} />
+              <Bar isAnimationActive={false} dataKey="count" fill="#2f9e6b" radius={[8, 8, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>
