@@ -24,8 +24,8 @@ export default function Home() {
     <>
       {/* 1. Hero */}
       <div className="grad-hero overflow-hidden">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 lg:grid-cols-[1.05fr_1fr] lg:px-8 lg:py-28">
-          <div>
+        <div className="mx-auto max-w-7xl px-5 py-24 lg:px-8 lg:py-32">
+          <div className="max-w-4xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-4 py-1.5 text-sm font-medium">
               <span className="h-2 w-2 rounded-full bg-accent" /> The AI decision engine for business
             </span>
@@ -40,7 +40,6 @@ export default function Home() {
               <Link href="/login" className="btn btn-light">Log in</Link>
             </div>
           </div>
-          <div className="floaty"><Placeholder label="Guardrail decision" /></div>
         </div>
       </div>
 
